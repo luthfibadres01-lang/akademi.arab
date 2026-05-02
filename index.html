@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Bahasa Arab - Akademi Arab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .logo-arab {
+            font-size: 2rem;
+            color: #e74c3c;
+            font-family: 'Amiri', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .arab-text {
+            font-size: 4rem;
+            font-family: 'Amiri', serif;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .section .arab-title {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Lessons Grid */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+            border: 3px solid transparent;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #e74c3c;
+        }
+
+        .lesson-arab {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .quiz-arab {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #e74c3c;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: #e74c3c;
+            background: #fff5f5;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .arab-text {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Arabic Font */
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="logo-arab">تعلم العربية</span>
+                Akademi Arab
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#lessons">Pelajaran</a></li>
+                <li><a href="#quiz">Kuis</a></li>
+                <li><a href="#progress">Progres</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Selamat Datang di</h1>
+            <div class="arab-text">أكاديمية العربية</div>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                Belajar Bahasa Arab dengan mudah dan menyenangkan
+            </p>
+            <a href="#lessons" class="cta-button">Mulai Belajar Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section id="lessons" class="section">
+        <div class="container">
+            <h2>Pelajaran Dasar Bahasa Arab</h2>
+            <div class="arab-title">دروس أساسية</div>
+            <div class="lessons-grid">
+                <div class="lesson-card" onclick="showLesson(1)">
+                    <div class="lesson-arab">مرحبا</div>
+                    <div class="lesson-title">Salam dan Perkenalan</div>
+                    <p>Belajar cara menyapa dan memperkenalkan diri dalam bahasa Arab</p>
+                </div>
+                <div class="lesson-card" onclick="showLesson(2)">
+                    <div class="lesson-arab">شكرا</div>
+                    <div class="lesson-title">Ucapan Terima Kasih</div>
+                    <p>Frasa-frasa umum untuk mengucapkan terima kasih</p>
+                </div>
+                <div class="lesson-card" onclick="showLesson(3)">
+                    <div class="lesson-arab">الأرقام</div>
+                    <div class="lesson-title">Angka 1-10</div>
+                    <p>Menguasai angka dasar dalam bahasa Arab</p>
+                </div>
+                <div class="lesson-card" onclick="showLesson(4)">
+                    <div class="lesson-arab">الألوان</div>
+                    <div class="lesson-title">Warna-warna</div>
+                    <p>Belajar menyebut berbagai warna</p>
+                </div>
+                <div class="lesson-card" onclick="showLesson(5)">
+                    <div class="lesson-arab">العائلة</div>
+                    <div class="lesson-title">Keluarga</div>
+                    <p>Kosa kata tentang anggota keluarga</p>
+                </div>
+                <div class="lesson-card" onclick="showLesson(6)">
+                    <div class="lesson-arab">الطعام</div>
+                    <div class="lesson-title">Makanan</div>
+                    <p>Nama-nama makanan populer dalam bahasa Arab</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+        <div class="container">
+            <h2>Tes Pengetahuanmu</h2>
+            <div class="arab-title">اختبار</div>
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="quiz-question">
+                    <div class="quiz-arab" id="quizArab">السؤال الأول</div>
+                    <div id="quizTranslation">Apa arti dari kata ini?</div>
+                </div>
+                <div class="quiz-options" id="quizOptions">
+                    <!-- Options akan di-generate oleh JS -->
+                </div>
+                <button onclick="nextQuestion()" class="cta-button" style="width: 100%; margin-top: 2rem;" id="nextBtn">Pertanyaan Selanjutnya</button>
+                <div id="score" style="text-align: center; margin-top: 1rem; font-size: 1.2rem; font-weight: bold;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress" class="section">
+        <div class="container">
+            <h2>Progres Belajarmu</h2>
+            <div class="arab-title">تقدمك</div>
+            <div style="text-align: center; font-size: 2rem; color: #27ae60;">
+                <i class="fas fa-trophy"></i> Level: <span id="userLevel">Pemula</span>
+            </div>
+            <div class="progress-bar" style="max-width: 500px; margin: 2rem auto;">
+                <div class="progress-fill" style="width: 45%;"></div>
+            </div>
+            <p style="text-align: center; font-size: 1.2rem;">Kamu sudah menyelesaikan 45% materi!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Akademi Arab. Belajar bahasa Arab menjadi lebih mudah.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lesson Modal (Simple alert for demo)
+        function showLesson(id) {
+            const lessons = {
+                1: "مرحبا = Halo\nكيف حالك؟ = Apa kabar?\nاسمي = Namaku",
+                2: "شكرا = Terima kasih\nعفوا = Sama-sama\nبارك الله = Semoga Allah memberkahi",
+                3: "١ واحد\n٢ اثنان\n٣ ثلاثة\n٤ أربعة\n٥ خمسة",
+                4: "أحمر = Merah\nأزرق = Biru\nأخضر = Hijau\nأصفر = Kuning",
+                5: "أب = Ayah\nأم = Ibu\nأخ = Saudara laki-laki\nأخت = Saudara perempuan",
+                6: "خبز = Roti\nماء = Air\nلبن = Susu\nفواكه = Buah-buahan"
+            };
+            alert(`Pelajaran ${id}:\n\n${lessons[id]}`);
+        }
+
+        // Quiz System
+        const quizData = [
+            { arab: "مرحبا", options: ["Selamat tinggal", "Halo", "Terima kasih", "Maaf"], correct: 1 },
+            { arab: "شكرا", options: ["Halo", "Terima kasih", "Selamat tinggal", "Apa kabar"], correct: 1 },
+            { arab: "١", options: ["Dua", "Satu", "Tiga", "Empat"], correct: 1 },
+            { arab: "أحمر", options: ["Biru", "Merah", "Hijau", "Kuning"], correct: 1 },
+            { arab: "أب", options: ["Ibu", "Ayah", "Saudara", "Anak"], correct: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= quizData.length) {
+                showResults();
+                return;
+            }
+
+            const q = quizData[currentQuestion];
+            document.getElementById('quizArab').textContent = q.arab;
+            document.getElementById('quizTranslation').textContent = 'Apa arti dari kata ini?';
+
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.textContent = option;
+                div.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(div);
+            });
+
+            document.getElementById('nextBtn').style.display = 'none';
+            answered = false;
+            updateProgress();
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (answered) return;
+
+            answered = true;
+            const q = quizData[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+
+            options.forEach((option, index) => {
+                if (index === q.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== q.correct) {
+                    option.classList.add('wrong');
+                }
+            });
+
+            if (selectedIndex === q.correct) {
+                score++;
+            }
+
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('score').textContent = `Skor: ${score}/${currentQuestion + 1}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showResults() {
+            document.querySelector('.quiz-container').innerHTML = `
+                <h3 style="text-align: center; color: #27ae60;">Selamat! Kuis Selesai</h3>
+                <div style="font-size: 3rem; text-align: center; margin: 2rem 0;">
+                    ${score}/${quizData.length}
+                </div>
+                <p style="text-align: center; font-size: 1.2rem;">
+                    Nilai kamu: ${Math.round((score/quizData.length)*100)}%
+                </p>
+                <button onclick="location.reload()" class="cta-button" style="width: 100%;">Coba Lagi</button>
+            `;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</body>
+</html>
